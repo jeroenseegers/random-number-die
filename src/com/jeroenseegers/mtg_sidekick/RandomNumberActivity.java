@@ -47,9 +47,11 @@ public class RandomNumberActivity extends Activity implements OnClickListener, S
 	}
 
 	public void throwDie() {
-		TextView randomNumberText = (TextView)findViewById(R.id.randomNumberText);
+		TextView randomNumberTextDark = (TextView)findViewById(R.id.randomNumberTextDark);
+		TextView randomNumberTextLight = (TextView)findViewById(R.id.randomNumberTextLight);
 		this.mDie.rollDie();
-		randomNumberText.setText(String.valueOf(this.mDie.getCurrentValue()));
+		randomNumberTextDark.setText(String.valueOf(this.mDie.getCurrentValue()));
+		randomNumberTextLight.setText(String.valueOf(this.mDie.getCurrentValue()));
 	}
 
 	@Override
