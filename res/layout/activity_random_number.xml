@@ -6,6 +6,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/random_number_button" />
+        android:text="@string/random_number_button"
+        android:id="@+id/randomNumberButton" />
 
 </LinearLayout>
