@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Magic the Gathering sidekick</string>
-    <string name="hello_world">Hello world</string>
-
+    <string name="random_number_button">Button</string>
 </resources>
