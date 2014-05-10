@@ -6,11 +6,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.jeroenseegers.mtg_sidekick.die.Die;
 
-public class RandomNumberActivity extends Activity implements SensorEventListener {
+public class RandomNumberActivity extends Activity implements OnClickListener, SensorEventListener {
 
 	private Die mDie;
 	private SensorManager mSensorManager;
@@ -26,6 +29,9 @@ public class RandomNumberActivity extends Activity implements SensorEventListene
         this.mDie = new Die(1, 20);
         this.mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         this.mAccelerometer = this.mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        
+        Button randomNumberButton = (Button)findViewById(R.id.randomNumberButton);
+        randomNumberButton.setOnClickListener(this);
     }
 	
 	@Override
@@ -73,6 +79,11 @@ public class RandomNumberActivity extends Activity implements SensorEventListene
 				this.throwDie();
 			}
 		}
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		this.throwDie();
 	}
 
 }
