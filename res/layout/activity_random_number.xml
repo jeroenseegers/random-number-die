@@ -9,4 +9,9 @@
         android:text="@string/random_number_button"
         android:id="@+id/randomNumberButton" />
 
+    <TextView
+        android:id="@+id/randomNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
