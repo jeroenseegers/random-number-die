@@ -6,6 +6,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -85,6 +86,12 @@ public class RandomNumberActivity extends Activity implements OnClickListener, S
 
 	@Override
 	public void onClick(View arg0) {
+		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		
+		if (vibrator.hasVibrator()) {
+			vibrator.vibrate(20);
+		}
+		
 		this.throwDie();
 	}
 

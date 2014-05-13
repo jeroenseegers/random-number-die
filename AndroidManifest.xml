@@ -7,6 +7,13 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
+    
+    <uses-permission
+        android:name="android.permission.VIBRATE" />
+    
+    <uses-feature
+        android:name="android.permission.VIBRATE"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
