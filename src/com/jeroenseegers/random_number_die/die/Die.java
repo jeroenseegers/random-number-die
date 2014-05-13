@@ -1,4 +1,4 @@
-package com.jeroenseegers.mtg_sidekick.die;
+package com.jeroenseegers.random_number_die.die;
 
 public class Die {
 

@@ -1,4 +1,4 @@
-package com.jeroenseegers.mtg_sidekick;
+package com.jeroenseegers.random_number_die;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -16,7 +16,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.jeroenseegers.mtg_sidekick.die.Die;
+import com.jeroenseegers.random_number_die.R;
+import com.jeroenseegers.random_number_die.die.Die;
 
 public class RandomNumberActivity extends Activity implements OnClickListener, SensorEventListener {
 
