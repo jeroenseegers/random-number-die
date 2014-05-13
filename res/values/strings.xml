@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic the Gathering sidekick</string>
+    
+    <string name="vibrate_option_text">Vibration</string>
 </resources>

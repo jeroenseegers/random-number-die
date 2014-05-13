@@ -1,12 +1,16 @@
 package com.jeroenseegers.mtg_sidekick;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,6 +23,8 @@ public class RandomNumberActivity extends Activity implements OnClickListener, S
 	private Die mDie;
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
+	private Vibrator mVibrator;
+	private SharedPreferences mPreferences;
 	
 	private long mShakeTimestamp;
 
@@ -27,13 +33,37 @@ public class RandomNumberActivity extends Activity implements OnClickListener, S
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_number);
 
-        this.mDie = new Die(1, 20);
+        this.mDie			= new Die(1, 20);
         this.mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         this.mAccelerometer = this.mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        this.mVibrator		= (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        this.mPreferences	= getPreferences(MODE_PRIVATE);
         
         Button randomNumberButton = (Button)findViewById(R.id.randomNumberButton);
         randomNumberButton.setOnClickListener(this);
     }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.options_menu, menu);
+		
+		if (!this.mVibrator.hasVibrator()) {
+			menu.findItem(R.id.vibrate_option).setEnabled(false);
+		}
+		
+		return true;
+	}
+	
+	public void toggleVibration(MenuItem item) {
+		if (this.mPreferences.getBoolean("vibrateOnTouch", true)) {
+			this.mPreferences.edit().putBoolean("vibrateOnTouch", false).commit();
+			item.setChecked(false);
+		} else {
+			this.mPreferences.edit().putBoolean("vibrateOnTouch", true).commit();
+			item.setChecked(true);
+		}
+	}
 	
 	@Override
 	protected void onPause() {
@@ -86,10 +116,8 @@ public class RandomNumberActivity extends Activity implements OnClickListener, S
 
 	@Override
 	public void onClick(View arg0) {
-		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-		
-		if (vibrator.hasVibrator()) {
-			vibrator.vibrate(20);
+		if (this.mVibrator.hasVibrator() && this.mPreferences.getBoolean("vibrateOnTouch", true)) {
+			this.mVibrator.vibrate(20);
 		}
 		
 		this.throwDie();
